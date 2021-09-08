@@ -1,5 +1,4 @@
 import requests
-import json
 from requests.exceptions import HTTPError
 
 urls = 'https://api.github.com/users/'

@@ -1,0 +1,39 @@
+main {
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 100;
+}
+
+h2 {
+    text-align: left;
+    font-weight: 100;
+}
+
+.head {
+    background-color: blue;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    font-size: 22px;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.explore {
+    background-color: white;
+    border-radius: 6px;
+    border-color: blue;
+    font-size: 22px;
+    padding: 10px;
+    color: blue;
+    cursor: pointer;
+}
+
+/* p {text-align: center;}
+div {text-align: center;} */

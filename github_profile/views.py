@@ -1,11 +1,14 @@
 from datetime import datetime
+
 from django.shortcuts import render, redirect
-from .forms import SignupForm
 from django.urls import reverse_lazy
-from django.views import generic
-from .models import Profile
-from .fetch_git import *
 from django.utils.timezone import get_current_timezone
+from django.views import generic
+
+from .fetch_git import *
+from .forms import SignupForm
+from .models import Profile
+
 
 # Create your views here.
 

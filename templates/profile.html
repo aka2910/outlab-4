@@ -16,16 +16,17 @@
             </a>
         </div>
         <h2>{{ profile.first_name }} {{ profile.last_name }} ( @{{ profile.username }} )</h2><br>
-        {{ profile.follower_count }} followers <br />&nbsp;<br />
-        {%   if profile.username == user.username %}
-            Profile last updated : {{ profile.last_update }} <a href="{% url 'update' value=user.username%}">(update now)</a><br>
+        {{ profile.follower_count }} followers <br/>&nbsp;<br/>
+        {% if profile.username == user.username %}
+            Profile last updated : {{ profile.last_update }}
+            <a href="{% url 'update' value=user.username %}">(update now)</a><br>
         {% else %}
             Profile last updated : {{ profile.last_update }} <br>
-            {% endif %}
+        {% endif %}
         <ul>
-        {% for repo in profile.repos.repos %}
-                    <li> {{ repo.name }} - {{ repo.stars }} stars <br>
-                {% endfor %}
+            {% for repo in profile.repos.repos %}
+                <li> {{ repo.name }} - {{ repo.stars }} stars <br>
+            {% endfor %}
         </ul>
     {% else %}
         <div style="text-align: center;">

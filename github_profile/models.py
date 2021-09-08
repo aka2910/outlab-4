@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -12,4 +13,3 @@ class Profile(models.Model):
     last_update = models.DateTimeField(auto_now_add=True)
     last_update.editable = True
     repos = models.JSONField()
-
