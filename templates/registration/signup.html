@@ -1,0 +1,22 @@
+<!-- templates/registration/signup.html -->
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+{% block headbuttons %}
+    <div style="text-align: center;">
+        <a href="{% url 'signup' %}">
+            <button class="head">Signup</button>
+        </a>
+        <a href="{% url 'login' %}">
+            <button class="head">Login</button>
+        </a>
+    </div>
+{% endblock %}
+{% block content %}
+    <h2>Signup with Github Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="head">Sign Up</button>
+    </form>
+{% endblock %}
