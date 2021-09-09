@@ -1,1 +1,1 @@
-web: gunicorn myoutlabproject.wsgi --log-files -
+web: gunicorn myoutlabproject.wsgi
