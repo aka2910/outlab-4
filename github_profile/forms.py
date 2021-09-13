@@ -24,7 +24,8 @@ class SignupForm(UserCreationForm):
         repo = get_github_repos_response(self.cleaned_data["username"])
         if repo is not None:
             repo = filter_json(repo)
-        # print(resp)
+            if commit:
+                user.save()
         try:
             Profile.objects.create(username=self.cleaned_data["username"],
                                    first_name=self.cleaned_data["first_name"],
@@ -34,6 +35,4 @@ class SignupForm(UserCreationForm):
                                    )
         except Exception as err:
             print(f"Error in fetching details from api : {err}")
-        if commit:
-            user.save()
         return user

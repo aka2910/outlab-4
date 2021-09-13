@@ -1,43 +1,57 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block title %}Explore{% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <div style="text-align: center;">
-            <a href="{% url 'explore' %}">
-                <button class="head">Explore</button>
-            </a>
-            <a href="{% url 'profile' value=user.username %}">
-                <button class="head">My Profile</button>
-            </a>
-            <a href="{% url 'logout' %}">
-                <button class="head">Logout</button>
-            </a>
-        </div>
-        <h2>{{ profile.first_name }} {{ profile.last_name }} ( @{{ profile.username }} )</h2><br>
-        {{ profile.follower_count }} followers <br/>&nbsp;<br/>
+{% if user.is_authenticated %}
+<div class="d-flex justify-content-center">
+    <a href="{% url 'explore' %}">
+        <button type="button" class="btn btn-primary btn-lg">Explore</button>
+    </a> &emsp;
+    <a href="{% url 'profile' value=user.username %}">
+        <button type="button" class="btn btn-primary btn-lg">My Profile</button>
+    </a> &emsp;
+    <a href="{% url 'logout' %}">
+        <button type="button" class="btn btn-primary btn-lg">Logout</button>
+    </a>
+</div>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{ profile.first_name }} {{ profile.last_name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@{{ profile.username }}</h6>
+        <p class="card-text">
+            Profile last updated : {{ profile.last_update }} &emsp;
+        </p>
         {% if profile.username == user.username %}
-            Profile last updated : {{ profile.last_update }}
-            <a href="{% url 'update' value=user.username %}">(update now)</a><br>
-        {% else %}
-            Profile last updated : {{ profile.last_update }} <br>
+        <a href="{% url 'update' value=user.username %}" class="card-link">update now</a>
         {% endif %}
-        <ul>
-            {% for repo in profile.repos.repos %}
-                <li> {{ repo.name }} - {{ repo.stars }} stars <br>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <div style="text-align: center;">
-            <a href="signup">
-                <button>Signup</button>
-            </a>
-            <a href="{% url 'login' %}">
-                <button>Login</button>
-            </a>
-        </div>
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a>
-    {% endif %}
+        <a href="https://github.com/{{ profile.username }}" class="card-link">github@{{ profile.username }}</a>
+    </div>
+</div>
+</br>
+<h4>Repos of {{ profile.first_name }} {{ profile.last_name }}</h4>
+
+<div class="row">
+
+    {% for repo in profile.repos.repos %}
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ repo.name }} &emsp;&emsp;
+            <span class="badge bg-success"> &star; {{ repo.stars }} </span>
+        </li>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="d-flex justify-content-center">
+    <a href="signup">
+        <button type="button" class="btn btn-primary btn-lg">Signup</button>
+    </a> &emsp;
+    <a href="{% url 'login' %}">
+        <button type="button" class="btn btn-primary btn-lg">Login</button>
+    </a>
+</div>
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
+{% endif %}
 {% endblock %}

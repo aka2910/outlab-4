@@ -1,39 +1,46 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block title %}Explore{% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <div style="text-align: center;">
-            <a href="{% url 'explore' %}">
-                <button class="head">Explore</button>
-            </a>
-            <a href="{% url 'profile' value=user.username %}">
-                <button class="head">My Profile</button>
-            </a>
-            <a href="{% url 'logout' %}">
-                <button class="head">Logout</button>
-            </a>
+{% if user.is_authenticated %}
+<div class="d-flex justify-content-center">
+    <a href="{% url 'explore' %}">
+        <button type="submit" class="btn btn-primary btn-lg">Explore</button>
+    </a> &emsp;
+    <a href="{% url 'profile' value=user.username %}">
+        <button type="submit" class="btn btn-primary btn-lg">My Profile</button>
+    </a> &emsp;
+    <a href="{% url 'logout' %}">
+        <button type="submit" class="btn btn-primary btn-lg">Logout</button>
+    </a>
+</div>
+<h3>All Profiles</h3>
+<div class="row">
+    {% for profile in profiles %}
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> {{ profile.first_name }} {{ profile.last_name }}</h4>
+                <a href="{% url 'profile' value=profile.username %}">
+                    <button class="btn btn-warning">{{ profile.username }}</button>
+                </a>
+            </div>
         </div>
-        <ul>
-            {% for profile in profiles %}
-                <li><a href="{% url 'profile' value=profile.username %}">
-                    <button class="explore">{{ profile.username }}</button>
-                </a></li><br>
-            {% endfor %}
-        </ul>
+    </div>
+    {% endfor %}
+</div>
 
-
-    {% else %}
-        <div style="text-align: center;">
-            <a href="signup">
-                <button>Signup</button>
-            </a>
-            <a href="{% url 'login' %}">
-                <button>Login</button>
-            </a>
-        </div>
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a>
-    {% endif %}
+{% else %}
+<div class="d-flex justify-content-center">
+    <a href="signup">
+        <button type="submit" class="btn btn-primary btn-lg">Signup</button>
+    </a> &emsp;
+    <a href="{% url 'login' %}">
+        <button type="submit" class="btn btn-primary btn-lg">Login</button>
+    </a>
+</div>
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
+{% endif %}
 {% endblock %}

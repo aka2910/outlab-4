@@ -1,0 +1,18 @@
+.line-break {
+    width: 100%;
+}
+.foot-1{
+    background-color: #f1f1f1;
+}
+.foot-2{
+    background-color: rgba(0, 0, 0, 0.2);
+    color: red;
+    font: 15px Georgia;
+    font-style: italic;
+}
+.link-style{
+    color: #008000;
+    font: 20px Georgia;
+    font-style: italic;
+}
+

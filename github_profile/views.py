@@ -1,22 +1,22 @@
 from datetime import datetime
-
+import json
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.timezone import get_current_timezone
 from django.views import generic
+from django.contrib.messages.views import SuccessMessageMixin
 
 from .fetch_git import *
-from .forms import SignupForm
+from .forms import *
 from .models import Profile
 
 
-# Create your views here.
-
-
-class SignUpView(generic.CreateView):
+class SignUpView(SuccessMessageMixin, generic.CreateView):
     form_class = SignupForm
-    success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')
+    success_message = f"User was created successfully"
 
 
 def exploreView(request):
