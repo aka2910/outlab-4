@@ -16,11 +16,16 @@
     </a>
 </div>
 <div class="card" style="width: 18rem;">
+
     <div class="card-body">
+        <img src="{{ profile.avatar_url }} " class="card-img-top" alt="github_avatar">
         <h5 class="card-title">{{ profile.first_name }} {{ profile.last_name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">@{{ profile.username }}</h6>
         <p class="card-text">
             Profile last updated : {{ profile.last_update }} &emsp;
+        </p>
+        <p class="card-text">
+            followers : {{ profile.follower_count }} &emsp;
         </p>
         {% if profile.username == user.username %}
         <a href="{% url 'update' value=user.username %}" class="card-link">update now</a>

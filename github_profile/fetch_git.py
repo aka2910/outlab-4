@@ -7,12 +7,11 @@ urls = 'https://api.github.com/users/'
 def get_github_users_response(username):
     try:
         response = requests.get(urls + username)
-        # If the response was successful, no Exception will be raised
         response.raise_for_status()
     except HTTPError as http_err:
-        print(f'HTTP error occurred: {http_err}')  # Python 3.6
+        print(f'HTTP error occurred: {http_err}')
     except Exception as err:
-        print(f'Other error occurred: {err}')  # Python 3.6
+        print(f'Other error occurred: {err}')
     else:
         print('Success!')
         return response.json()
@@ -21,12 +20,11 @@ def get_github_users_response(username):
 def get_github_repos_response(username):
     try:
         response = requests.get(urls + username + '/repos')
-        # If the response was successful, no Exception will be raised
         response.raise_for_status()
     except HTTPError as http_err:
-        print(f'HTTP error occurred: {http_err}')  # Python 3.6
+        print(f'HTTP error occurred: {http_err}')
     except Exception as err:
-        print(f'Other error occurred: {err}')  # Python 3.6
+        print(f'Other error occurred: {err}')
     else:
         print('Success!')
         return response.json()

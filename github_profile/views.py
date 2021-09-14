@@ -9,7 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from .fetch_git import *
 from .forms import *
-from .models import Profile
+from .models import Profile1
 
 
 class SignUpView(SuccessMessageMixin, generic.CreateView):
@@ -20,19 +20,19 @@ class SignUpView(SuccessMessageMixin, generic.CreateView):
 
 
 def exploreView(request):
-    profiles = Profile.objects.all()
+    profiles = Profile1.objects.all()
     return render(request, 'explore.html', {'profiles': profiles})
 
 
 def profileView(request, value):
     user = value
-    profile = Profile.objects.get(username=user)
+    profile = Profile1.objects.get(username=user)
     return render(request, 'profile.html', {'profile': profile})
 
 
 def updateView(request, value):
     user = value
-    profile = Profile.objects.get(username=user)
+    profile = Profile1.objects.get(username=user)
     resp: json = get_github_users_response(user)
     repo = get_github_repos_response(user)
     if repo is not None:
