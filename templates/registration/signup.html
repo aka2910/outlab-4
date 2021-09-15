@@ -13,11 +13,12 @@
 </div>
 {% endblock %}
 {% block content %}
+</br>
 <h2>Signup with Github Profile</h2>
 {% if messages %}
 {% for message in messages %}
-<div class="text-center alert alert-{{ message.tags }}">
-    {{ message|safe }}
+<div class="alert alert-danger" role="alert">
+    <strong>Warning!</strong>{{ message }}
 </div>
 {% endfor %}
 {% endif %}
