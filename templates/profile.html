@@ -27,8 +27,8 @@
         <p class="card-text">
             followers : {{ profile.follower_count }} &emsp;
         </p>
-        {% if profile.username == user.username %}
-        <a href="{% url 'update' value=user.username %}" class="card-link">update now</a>
+        {% if profile.username == user.username or user.is_superuser %}
+        <a href="{% url 'update' value=profile.username %}" class="card-link">update now</a>
         {% endif %}
         <a href="https://github.com/{{ profile.username }}" class="card-link">github@{{ profile.username }}</a>
     </div>
