@@ -1,14 +1,10 @@
 from datetime import datetime
-import json
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 from django.utils.timezone import get_current_timezone
 from django.views import generic
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
-from .fetch_git import *
+from .fetch_git import get_github_users_response
 from .forms import *
 from .models import Profile1
 
@@ -17,6 +13,7 @@ class SignUpView(generic.FormView):
     form_class = SignupForm
     template_name = 'registration/signup.html'
     success_url = ''
+
     def form_valid(self, form):
         form.save()
         username = self.request.POST['username']
