@@ -1,0 +1,7 @@
+https://stackoverflow.com/questions/30413294/css-is-not-showing-on-heroku-django-app
+https://stackoverflow.com/questions/12145434/how-to-output-loop-counter-in-python-jinja-template
+https://stackoverflow.com/questions/18622007/runtimewarning-datetimefield-received-a-naive-datetime
+https://stackoverflow.com/questions/36665889/collectstatic-error-while-deploying-django-app-to-heroku
+
+*stackoverflow.com* 
+Apart from these multiple links which were mentioned in the docs of problem statement
