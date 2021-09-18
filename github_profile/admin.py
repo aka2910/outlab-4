@@ -1,5 +1,6 @@
 from django.contrib import admin
 
-from .models import Profile1
+from .models import *
 
-admin.site.register(Profile1)
+admin.site.register(Profile)
+admin.site.register(Repository)

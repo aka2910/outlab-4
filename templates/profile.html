@@ -38,11 +38,11 @@
 
 <div class="row">
 
-    {% for repo in profile.repos.repos %}
+    {% for repo in repos %}
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            {{ repo.name }} &emsp;&emsp;
-            <span class="badge bg-success"> &star; {{ repo.stars }} </span>
+            {{ repo.repo_name }} &emsp;&emsp;
+            <span class="badge bg-success"> &star; {{ repo.repo_stars }} </span>
         </li>
     </div>
     {% endfor %}

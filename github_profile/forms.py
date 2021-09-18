@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from .fetch_git import *
-from .models import Profile1
+from .models import *
 
 
 class SignupForm(UserCreationForm):
@@ -27,13 +27,16 @@ class SignupForm(UserCreationForm):
             if commit:
                 user.save()
         try:
-            Profile1.objects.create(username=self.cleaned_data["username"],
-                                    first_name=self.cleaned_data["first_name"],
-                                    last_name=self.cleaned_data["last_name"],
-                                    follower_count=resp['followers'],
-                                    avatar_url=resp['avatar_url'],
-                                    repos=repo
-                                    )
+            p = Profile(username=self.cleaned_data["username"],
+                        first_name=self.cleaned_data["first_name"],
+                        last_name=self.cleaned_data["last_name"],
+                        follower_count=resp['followers'],
+                        avatar_url=resp['avatar_url'],
+                        )
+            p.save()
+            for i in repo['repos']:
+                r = Repository(user=p, repo_name=i["name"], repo_stars=i["stars"])
+                r.save()
         except Exception as err:
             print(f"Error in fetching details from api : {err}")
         return user

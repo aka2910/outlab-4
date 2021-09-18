@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .fetch_git import get_github_users_response
 from .forms import *
-from .models import Profile1
+from .models import *
 
 
 class SignUpView(generic.FormView):
@@ -29,19 +29,21 @@ class SignUpView(generic.FormView):
 
 
 def exploreView(request):
-    profiles = Profile1.objects.all()
+    profiles = Profile.objects.all()
     return render(request, 'explore.html', {'profiles': profiles})
 
 
 def profileView(request, value):
     user = value
-    profile = Profile1.objects.get(username=user)
-    return render(request, 'profile.html', {'profile': profile})
+    profile = Profile.objects.get(username=user)
+    repos = Repository.objects.filter(user__username=user).order_by('-repo_stars')
+    print(repos)
+    return render(request, 'profile.html', {'profile': profile, 'repos': repos})
 
 
 def updateView(request, value):
     user = value
-    profile = Profile1.objects.get(username=user)
+    profile = Profile.objects.get(username=user)
     resp: json = get_github_users_response(user)
     repo = get_github_repos_response(user)
     if repo is not None:
@@ -51,5 +53,12 @@ def updateView(request, value):
     profile.repos = repo
     profile.last_update = datetime.now(tz=get_current_timezone())
     profile.save()
+    print(Repository.objects.filter(user__username=user).count())
+    Repository.objects.filter(user__username=user).delete()
+    print(Repository.objects.filter(user__username=user).count())
+    for i in repo['repos']:
+        r = Repository(user=profile, repo_name=i["name"], repo_stars=i["stars"])
+        r.save()
+    print(Repository.objects.filter(user__username=user).count())
     print(datetime.now())
     return redirect(f'/profile/{user}', {'profile': profile})
