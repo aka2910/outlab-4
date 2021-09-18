@@ -32,7 +32,7 @@ class SignUpView(generic.FormView):
 
 @login_required()
 def exploreView(request):
-    profiles = Profile.objects.all()
+    profiles = Profile.objects.all().order_by('-follower_count')
     return render(request, 'explore.html', {'profiles': profiles})
 
 
