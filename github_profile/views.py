@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils.timezone import get_current_timezone
 from django.views import generic
@@ -28,19 +30,22 @@ class SignUpView(generic.FormView):
             return HttpResponseRedirect(self.success_url)
 
 
+@login_required()
 def exploreView(request):
     profiles = Profile.objects.all()
     return render(request, 'explore.html', {'profiles': profiles})
 
 
+@login_required()
 def profileView(request, value):
     user = value
     profile = Profile.objects.get(username=user)
     repos = Repository.objects.filter(user__username=user).order_by('-repo_stars')
-    print(repos)
+    # print(repos)
     return render(request, 'profile.html', {'profile': profile, 'repos': repos})
 
 
+@login_required()
 def updateView(request, value):
     user = value
     profile = Profile.objects.get(username=user)
@@ -52,12 +57,12 @@ def updateView(request, value):
     profile.avatar_url = resp['avatar_url']
     profile.last_update = datetime.now(tz=get_current_timezone())
     profile.save()
-    print(Repository.objects.filter(user__username=user).count())
+    # print(Repository.objects.filter(user__username=user).count())
     Repository.objects.filter(user__username=user).delete()
-    print(Repository.objects.filter(user__username=user).count())
+    # print(Repository.objects.filter(user__username=user).count())
     for i in repo['repos']:
         r = Repository(user=profile, repo_name=i["name"], repo_stars=i["stars"])
         r.save()
-    print(Repository.objects.filter(user__username=user).count())
-    print(datetime.now())
+    # print(Repository.objects.filter(user__username=user).count())
+    # print(datetime.now())
     return redirect(f'/profile/{user}', {'profile': profile})

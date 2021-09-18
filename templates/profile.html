@@ -6,19 +6,19 @@
 {% if user.is_authenticated %}
 <div class="d-flex justify-content-center">
     <a href="{% url 'explore' %}">
-        <button type="button" class="btn btn-primary btn-lg">Explore</button>
+        <button class="btn btn-primary btn-lg" type="button">Explore</button>
     </a> &emsp;
     <a href="{% url 'profile' value=user.username %}">
-        <button type="button" class="btn btn-primary btn-lg">My Profile</button>
+        <button class="btn btn-primary btn-lg" type="button">My Profile</button>
     </a> &emsp;
     <a href="{% url 'logout' %}">
-        <button type="button" class="btn btn-primary btn-lg">Logout</button>
+        <button class="btn btn-primary btn-lg" type="button">Logout</button>
     </a>
 </div>
 <div class="card" style="width: 18rem;">
 
     <div class="card-body">
-        <img src="{{ profile.avatar_url }} " class="card-img-top" alt="github_avatar">
+        <img alt="github_avatar" class="card-img-top" src="{{ profile.avatar_url }} ">
         <h5 class="card-title">{{ profile.first_name }} {{ profile.last_name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">@{{ profile.username }}</h6>
         <p class="card-text">
@@ -28,9 +28,9 @@
             followers : {{ profile.follower_count }} &emsp;
         </p>
         {% if profile.username == user.username or user.is_superuser %}
-        <a href="{% url 'update' value=profile.username %}" class="card-link">update now</a>
+        <a class="card-link" href="{% url 'update' value=profile.username %}">update now</a>
         {% endif %}
-        <a href="https://github.com/{{ profile.username }}" class="card-link">github@{{ profile.username }}</a>
+        <a class="card-link" href="https://github.com/{{ profile.username }}">github@{{ profile.username }}</a>
     </div>
 </div>
 </br>
@@ -50,10 +50,10 @@
 {% else %}
 <div class="d-flex justify-content-center">
     <a href="signup">
-        <button type="button" class="btn btn-primary btn-lg">Signup</button>
+        <button class="btn btn-primary btn-lg" type="button">Signup</button>
     </a> &emsp;
     <a href="{% url 'login' %}">
-        <button type="button" class="btn btn-primary btn-lg">Login</button>
+        <button class="btn btn-primary btn-lg" type="button">Login</button>
     </a>
 </div>
 <p>You are not logged in</p>

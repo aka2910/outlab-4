@@ -6,13 +6,13 @@
 {% if user.is_authenticated %}
 <div class="d-flex justify-content-center">
     <a href="{% url 'explore' %}">
-        <button type="submit" class="btn btn-primary btn-lg">Explore</button>
+        <button class="btn btn-primary btn-lg" type="submit">Explore</button>
     </a> &emsp;
     <a href="{% url 'profile' value=user.username %}">
-        <button type="submit" class="btn btn-primary btn-lg">My Profile</button>
+        <button class="btn btn-primary btn-lg" type="submit">My Profile</button>
     </a> &emsp;
     <a href="{% url 'logout' %}">
-        <button type="submit" class="btn btn-primary btn-lg">Logout</button>
+        <button class="btn btn-primary btn-lg" type="submit">Logout</button>
     </a>
 </div>
 <h3>All Profiles</h3>
@@ -21,7 +21,7 @@
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
         <div class="card">
             <a href="{% url 'profile' value=profile.username %}">
-            <img src="{{ profile.avatar_url }} " class="card-img-top" alt="github_avatar">
+                <img alt="github_avatar" class="card-img-top" src="{{ profile.avatar_url }} ">
             </a>
             <div class="card-body">
                 <h4 class="card-title"> {{ profile.first_name }} {{ profile.last_name }}</h4>
@@ -37,10 +37,10 @@
 {% else %}
 <div class="d-flex justify-content-center">
     <a href="signup">
-        <button type="submit" class="btn btn-primary btn-lg">Signup</button>
+        <button class="btn btn-primary btn-lg" type="submit">Signup</button>
     </a> &emsp;
     <a href="{% url 'login' %}">
-        <button type="submit" class="btn btn-primary btn-lg">Login</button>
+        <button class="btn btn-primary btn-lg" type="submit">Login</button>
     </a>
 </div>
 <p>You are not logged in</p>

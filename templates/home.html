@@ -7,13 +7,13 @@
 {% if user.is_authenticated %}
 <div class="d-flex justify-content-center">
     <a href="{% url 'explore' %}">
-        <button type="button" class="btn btn-primary btn-lg">Explore</button>
+        <button class="btn btn-primary btn-lg" type="button">Explore</button>
     </a> &emsp;
     <a href="{% url 'profile' value=user.username %}">
-        <button type="button" class="btn btn-primary btn-lg">My Profile</button>
+        <button class="btn btn-primary btn-lg" type="button">My Profile</button>
     </a> &emsp;
     <a href="{% url 'logout' %}">
-        <button type="button" class="btn btn-primary btn-lg">Logout</button>
+        <button class="btn btn-primary btn-lg" type="button">Logout</button>
     </a>
 </div>
 <h3>Dashboard</h3>
@@ -21,10 +21,10 @@ Hi {{ user.username }}!</br>
 {% else %}
 <div class="d-flex justify-content-center">
     <a href="signup">
-        <button type="button" class="btn btn-primary btn-lg">Signup</button>
+        <button class="btn btn-primary btn-lg" type="button">Signup</button>
     </a> &emsp;
     <a href="{% url 'login' %}">
-        <button type="button" class="btn btn-primary btn-lg">Login</button>
+        <button class="btn btn-primary btn-lg" type="button">Login</button>
     </a>
 </div>
 <p>You are not logged in</p>

@@ -1,9 +1,7 @@
 import json
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
 from .fetch_git import *
 from .models import *
 

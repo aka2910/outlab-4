@@ -8,17 +8,17 @@ def get_github_users_response(username):
         response = requests.get(urls + username)
         response.raise_for_status()
     except Exception as err:
-        print(f'Other error occurred: {err}')
+        print(f'error occurred: {err}')
     else:
         return response.json()
 
 
 def get_github_repos_response(username):
     try:
-        response = requests.get(urls + username + '/repos')
+        response = requests.get(urls + f'{username}/repos')
         response.raise_for_status()
     except Exception as err:
-        print(f'Other error occurred: {err}')
+        print(f'error occurred: {err}')
     else:
         return response.json()
 
