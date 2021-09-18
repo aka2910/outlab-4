@@ -50,7 +50,6 @@ def updateView(request, value):
         repo = filter_json(repo)
     profile.follower_count = resp['followers']
     profile.avatar_url = resp['avatar_url']
-    profile.repos = repo
     profile.last_update = datetime.now(tz=get_current_timezone())
     profile.save()
     print(Repository.objects.filter(user__username=user).count())
